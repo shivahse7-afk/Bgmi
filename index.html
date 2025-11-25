@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSDM Student Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border: 2px solid #004d99;
+            background-color: #cce6ff;
+        }
+        
+        .combined-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        /* CLICKABLE LOGO */
+        .left-logo {
+            width: 120px;
+            height: 120px;
+            background-color: white;
+           // border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            //border: 1px solid #ddd;
+            cursor: pointer;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .left-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        
+        .center-mission {
+            flex-grow: 1;
+            text-align: center;
+            padding: 0 15px;
+            min-width: 250px;
+        }
+        
+        .mission-name {
+            font-weight: bold;
+            color: #004d99;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .red-text {
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+        
+        .right-scanner {
+            width: 120px;
+            height: 120px;
+            background-color: white;
+            //border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          //  border: 1px solid #ddd;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .right-scanner img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 15px;
+        }
+        
+        .header-content {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .clickable-header {
+            background-color: #cce6ff;
+            color: #004d99;
+            border: 2px solid #004d99;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .clickable-header:hover {
+            background-color: #b3d9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 22px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #004d99;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #004d99;
+            box-shadow: 0 0 0 3px rgba(0, 77, 153, 0.2);
+            background-color: white;
+        }
+        
+        .verify-btn {
+            background: linear-gradient(to bottom, #27ae60, #219653);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .verify-btn:hover {
+            background: linear-gradient(to bottom, #219653, #1e8449);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .verify-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-container {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #004d99;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Preview Section Styles */
+        .preview-section {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 10px;
+            border: 2px solid #004d99;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .preview-header {
+            text-align: center;
+            color: #004d99;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #004d99;
+            font-size: 24px;
+        }
+        
+        .preview-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        
+        .student-details {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .student-photo {
+            flex: 0 0 220px;
+            text-align: center;
+        }
+        
+        .student-photo img {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 10px;
+            border: 2px solid #004d99;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            flex-wrap: wrap;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            width: 200px;
+            color: #004d99;
+            font-size: 16px;
+        }
+        
+        .detail-value {
+            flex: 1;
+            font-size: 16px;
+            min-width: 150px;
+        }
+        
+        .pass-badge {
+            display: inline-block;
+            background: linear-gradient(to bottom, #27ae60, #219653);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .validation-message {
+            font-size: 14px;
+            margin-top: 8px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .valid {
+            color: #27ae60;
+            background-color: rgba(39, 174, 96, 0.1);
+        }
+        
+        .invalid {
+            color: #e74c3c;
+            background-color: rgba(231, 76, 60, 0.1);
+        }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                border-radius: 10px;
+            }
+            
+            .combined-section {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 15px;
+            }
+            
+            .left-logo, .right-scanner {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .center-mission {
+                padding: 0 10px;
+            }
+            
+            .mission-name {
+                font-size: 20px;
+            }
+            
+            .clickable-header {
+                font-size: 20px;
+                padding: 14px 15px;
+            }
+            
+            .preview-content {
+                flex-direction: column;
+            }
+            
+            .student-photo {
+                order: -1;
+                margin: 0 auto;
+                flex: 0 0 auto;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .detail-label {
+                width: 100%;
+            }
+            
+            .detail-value {
+                width: 100%;
+            }
+            
+            input {
+                padding: 12px 14px;
+            }
+            
+            .verify-btn {
+                padding: 14px 16px;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 12px;
+            }
+            
+            .combined-section {
+                padding: 12px;
+            }
+            
+            .mission-name {
+                font-size: 18px;
+            }
+            
+            .center-mission p {
+                font-size: 14px;
+            }
+            
+            .clickable-header {
+                font-size: 18px;
+                padding: 12px 10px;
+            }
+            
+            label {
+                font-size: 16px;
+            }
+            
+            .preview-header {
+                font-size: 20px;
+            }
+            
+            .detail-label, .detail-value {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-content">
+            <button class="clickable-header" onclick="window.location.href='https://nsdm.gov.in'">
+                NSDM Student Verification
+            </button>
+        </div>
+        
+        <div class="combined-section">
+            <!-- CLICKABLE MAIN LOGO WITH IMAGE -->
+            <div class="left-logo" onclick="logoClicked()">
+                <img src="https://i.ibb.co/nsNRztv0/Picsart-25-11-25-16-15-14-800.webp" alt="NSDM Logo">
+            </div>
+
+            <div class="center-mission">
+                <p class="mission-name">Nehru Skill Development Mission</p>
+                <p>An Autonomous Body, Under Govt.Act</p>
+                <p>Established Under Act 1862, Registered under Govt of Tamilnadu</p>
+                <p>National Development Organization, Promoted by Govt of India</p>
+
+                <!-- RED COLORED LINE -->
+                <p class="red-text">A Central Board of Vocational Education</p>
+            </div>
+
+            <!-- SCANNER IMAGE -->
+            <div class="right-scanner">
+                <img src="https://i.postimg.cc/6Qf6f7Yt/qr-scanner.png" alt="Scanner Image">
+            </div>
+        </div>
+        
+        <form id="verification-form" autocomplete="off">
+            <div class="form-group">
+                <label for="reg-number">Enter Registration Number:</label>
+                <input type="text" id="reg-number" name="reg-number" required 
+                       pattern="[A-Za-z0-9]{4,12}" 
+                       title="Registration number should be 4-12 alphanumeric characters"
+                       autocomplete="off">
+                <div class="validation-message" id="reg-validation">
+                   
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Enter Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required autocomplete="off">
+                <div class="validation-message" id="dob-validation">
+                    
+                </div>
+            </div>
+            
+            <button type="submit" class="verify-btn">Verify</button>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Verifying your details...</p>
+            </div>
+        </form>
+        
+        <div class="result-container" id="result"></div>
+        
+        <!-- Preview Section -->
+        <div class="preview-section" id="preview-section">
+            <h2 class="preview-header">Student Verification Details</h2>
+            <div class="preview-content">
+                <div class="student-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Registration No:</div>
+                        <div class="detail-value" id="preview-regno"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">DOB:</div>
+                        <div class="detail-value" id="preview-dob"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Institution Name:</div>
+                        <div class="detail-value" id="preview-institution"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Student Name:</div>
+                        <div class="detail-value" id="preview-name"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Father's Name:</div>
+                        <div class="detail-value" id="preview-father"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Course:</div>
+                        <div class="detail-value" id="preview-course"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Duration:</div>
+                        <div class="detail-value" id="preview-duration"></div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Result:</div>
+                        <div class="detail-value"><span class="pass-badge" id="preview-result"></span></div>
+                    </div>
+                </div>
+                <div class="student-photo">
+                    <img src="https://via.placeholder.com/220x280/004d99/ffffff?text=Student+Photo" alt="Student Photo" id="preview-photo">
+                    <p style="margin-top: 10px; font-weight: bold;">Student Photo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database of valid student records
+        const studentDatabase = [
+            {
+                regNumber: '1819336',
+                dob: '1998-06-20',
+                institution: 'Purvanchal Institute of Fire & Safety',
+                name: 'Shivshakti Sahani',
+                father: 'Dharmraj Sahani',
+                course: 'Post Graduate Diploma in Industrial Safety',
+                duration: '2018 - 2019',
+                result: 'Pass'
+            },
+            {
+                regNumber: '1920456',
+                dob: '1999-03-15',
+                institution: 'Delhi Institute of Safety Management',
+                name: 'Rahul Sharma',
+                father: 'Rajesh Sharma',
+                course: 'Diploma in Fire Safety',
+                duration: '2019 - 2020',
+                result: 'Pass'
+            },
+            {
+                regNumber: '2031567',
+                dob: '2000-11-08',
+                institution: 'Mumbai Safety College',
+                name: 'Priya Patel',
+                father: 'Sanjay Patel',
+                course: 'Advanced Industrial Safety',
+                duration: '2020 - 2021',
+                result: 'Pass'
+            },
+            {
+                regNumber: '2142678',
+                dob: '2001-07-22',
+                institution: 'Kolkata Fire Academy',
+                name: 'Amit Kumar',
+                father: 'Vikash Kumar',
+                course: 'Fire Engineering',
+                duration: '2021 - 2022',
+                result: 'Pass'
+            }
+        ];
+
+        function logoClicked() {
+            window.location.href = "https://nehruskilldevelopmentmission.com/";
+        }
+        
+        // Real-time validation for registration number
+        document.getElementById('reg-number').addEventListener('input', function() {
+            const regNumber = this.value;
+            const validationMsg = document.getElementById('reg-validation');
+            
+            if (regNumber.length === 0) {
+                validationMsg.textContent = "Registration number is required";
+                validationMsg.className = "validation-message invalid";
+            } else if (regNumber.length < 4 || regNumber.length > 12) {
+                validationMsg.textContent = "Registration number must be 4-12 characters";
+                validationMsg.className = "validation-message invalid";
+            } else if (!/^[A-Za-z0-9]+$/.test(regNumber)) {
+                validationMsg.textContent = "Registration number can only contain letters and numbers";
+                validationMsg.className = "validation-message invalid";
+            } else {
+                validationMsg.textContent = "Registration number format is valid";
+                validationMsg.className = "validation-message valid";
+            }
+        });
+        
+        // Real-time validation for date of birth
+        document.getElementById('dob').addEventListener('change', function() {
+            const dob = this.value;
+            const validationMsg = document.getElementById('dob-validation');
+            
+            if (!dob) {
+                validationMsg.textContent = "Date of birth is required";
+                validationMsg.className = "validation-message invalid";
+            } else {
+                const dobDate = new Date(dob);
+                const today = new Date();
+                
+                if (dobDate > today) {
+                    validationMsg.textContent = "Date of birth cannot be in the future";
+                    validationMsg.className = "validation-message invalid";
+                } else {
+                    validationMsg.textContent = "Date of birth is valid";
+                    validationMsg.className = "validation-message valid";
+                }
+            }
+        });
+        
+        document.getElementById('verification-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const regNumber = document.getElementById('reg-number').value;
+            const dob = document.getElementById('dob').value;
+            const resultDiv = document.getElementById('result');
+            const loadingDiv = document.getElementById('loading');
+            const previewSection = document.getElementById('preview-section');
+            
+            // Validate registration number format
+            if (!/^[A-Za-z0-9]{4,12}$/.test(regNumber)) {
+                resultDiv.className = 'result-container error';
+                resultDiv.innerHTML = `
+                    <h3>Invalid Registration Number</h3>
+                    <p>Registration number must be 4-12 alphanumeric characters.</p>
+                `;
+                resultDiv.style.display = 'block';
+                previewSection.style.display = 'none';
+                return;
+            }
+            
+            // Validate date of birth
+            if (!dob) {
+                resultDiv.className = 'result-container error';
+                resultDiv.innerHTML = '<p>Please enter your date of birth.</p>';
+                resultDiv.style.display = 'block';
+                previewSection.style.display = 'none';
+                return;
+            }
+            
+            // Show loading indicator
+            loadingDiv.style.display = 'block';
+            resultDiv.style.display = 'none';
+            previewSection.style.display = 'none';
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // Hide loading indicator
+                loadingDiv.style.display = 'none';
+                
+                // Find student in database
+                const student = studentDatabase.find(s => 
+                    s.regNumber === regNumber && s.dob === dob
+                );
+                
+                if (student) {
+                    // Both registration and DOB are correct
+                    resultDiv.className = 'result-container success';
+                    resultDiv.innerHTML = '<h3>Verification Successful!</h3>';
+                    
+                    // Update preview section with student data
+                    document.getElementById('preview-regno').textContent = student.regNumber;
+                    document.getElementById('preview-dob').textContent = formatDateForDisplay(student.dob);
+                    document.getElementById('preview-institution').textContent = student.institution;
+                    document.getElementById('preview-name').textContent = student.name;
+                    document.getElementById('preview-father').textContent = student.father;
+                    document.getElementById('preview-course').textContent = student.course;
+                    document.getElementById('preview-duration').textContent = student.duration;
+                    document.getElementById('preview-result').textContent = student.result;
+                    
+                    // Show the preview section
+                    previewSection.style.display = 'block';
+                } else {
+                    // Either registration or DOB is incorrect
+                    resultDiv.className = 'result-container error';
+                    resultDiv.innerHTML = `
+                        <h3>Verification Failed</h3>
+                        <p>No student record found with the provided details.</p>
+                        <p>Please check your registration number and date of birth.</p>
+                    `;
+                    previewSection.style.display = 'none';
+                }
+                
+                resultDiv.style.display = 'block';
+            }, 1500);
+        });
+        
+        function formatDateForDisplay(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            return `${day}/${month}/${year}`;
+        }
+        
+        // Set max date to today for DOB field
+        document.getElementById('dob').max = new Date().toISOString().split('T')[0];
+        
+        // Clear any browser autofill on page load
+        window.onload = function() {
+            document.getElementById('reg-number').value = '';
+            document.getElementById('dob').value = '';
+        };
+    </script>
+
+</body>
+</html>
