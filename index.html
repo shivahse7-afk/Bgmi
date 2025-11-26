@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NSDM Student Verification</title>
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -51,11 +56,9 @@
             width: 120px;
             height: 120px;
             background-color: white;
-           // border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            //border: 1px solid #ddd;
             cursor: pointer;
             overflow: hidden;
             flex-shrink: 0;
@@ -92,11 +95,9 @@
             width: 120px;
             height: 120px;
             background-color: white;
-            //border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
-          //  border: 1px solid #ddd;
             overflow: hidden;
             flex-shrink: 0;
         }
@@ -434,7 +435,7 @@
 
     <div class="container">
         <div class="header-content">
-            <button class="clickable-header" onclick="window.location.href='https://nsdm-result.vercel.app/'">
+            <button class="clickable-header" onclick="window.location.href='#'">
                 NSDM Student Verification
             </button>
         </div>
@@ -530,7 +531,7 @@
                     </div>
                 </div>
                 <div class="student-photo">
-                    <img src="https://i.ibb.co/Txn7gKDD/Picsart-25-11-25-16-46-58-877.jpg" alt="Student Photo" id="preview-photo">
+                    <img src="#" alt="Student Photo" id="preview-photo">
                     <p style="margin-top: 10px; font-weight: bold;">Student Photo</p>
                 </div>
             </div>
@@ -538,49 +539,20 @@
     </div>
 
     <script>
-        // Database of valid student records
-        const studentDatabase = [
-            {
-                regNumber: '1819336',
-                dob: '1998-06-20',
-                institution: 'Purvanchal Institute of Fire & Safety',
-                name: 'Shivshakti Sahani',
-                father: 'Dharmraj Sahani',
-                course: 'Post Graduate Diploma in Industrial Safety',
-                duration: '2018 - 2019',
-                result: 'Pass'
-            },
-            {
-                regNumber: '1920456',
-                dob: '1999-03-15',
-                institution: 'Delhi Institute of Safety Management',
-                name: 'Rahul Sharma',
-                father: 'Rajesh Sharma',
-                course: 'Diploma in Fire Safety',
-                duration: '2019 - 2020',
-                result: 'Pass'
-            },
-            {
-                regNumber: '2031567',
-                dob: '2000-11-08',
-                institution: 'Mumbai Safety College',
-                name: 'Priya Patel',
-                father: 'Sanjay Patel',
-                course: 'Advanced Industrial Safety',
-                duration: '2020 - 2021',
-                result: 'Pass'
-            },
-            {
-                regNumber: '2142678',
-                dob: '2001-07-22',
-                institution: 'Kolkata Fire Academy',
-                name: 'Amit Kumar',
-                father: 'Vikash Kumar',
-                course: 'Fire Engineering',
-                duration: '2021 - 2022',
-                result: 'Pass'
-            }
-        ];
+        // Firebase configuration
+        const firebaseConfig = {
+            // Replace with your Firebase project configuration
+            apiKey: "AIzaSyBBvKKGZQB_OZI9H8KVxyX0OfAePP2OEgs",
+            authDomain: "student-25531.firebaseapp.com",
+            projectId: "student-25531",
+            storageBucket: "student-25531.firebasestorage.app",
+            messagingSenderId: "159478186132",
+            appId: "1:159478186132:web:8f25f7756e64a1eafff481"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
         function logoClicked() {
             window.location.href = "https://nehruskilldevelopmentmission.com/";
@@ -628,7 +600,7 @@
             }
         });
         
-        document.getElementById('verification-form').addEventListener('submit', function(e) {
+        document.getElementById('verification-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const regNumber = document.getElementById('reg-number').value;
@@ -663,18 +635,22 @@
             resultDiv.style.display = 'none';
             previewSection.style.display = 'none';
             
-            // Simulate API call with timeout
-            setTimeout(() => {
+            try {
+                // Query Firestore for student data
+                const studentsRef = db.collection('students');
+                const querySnapshot = await studentsRef
+                    .where('regNumber', '==', regNumber)
+                    .where('dob', '==', dob)
+                    .get();
+                
                 // Hide loading indicator
                 loadingDiv.style.display = 'none';
                 
-                // Find student in database
-                const student = studentDatabase.find(s => 
-                    s.regNumber === regNumber && s.dob === dob
-                );
-                
-                if (student) {
-                    // Both registration and DOB are correct
+                if (!querySnapshot.empty) {
+                    // Student found
+                    const studentDoc = querySnapshot.docs[0];
+                    const student = studentDoc.data();
+                    
                     resultDiv.className = 'result-container success';
                     resultDiv.innerHTML = '<h3>Verification Successful!</h3>';
                     
@@ -688,10 +664,15 @@
                     document.getElementById('preview-duration').textContent = student.duration;
                     document.getElementById('preview-result').textContent = student.result;
                     
+                    // Update student photo if available
+                    if (student.photoUrl) {
+                        document.getElementById('preview-photo').src = student.photoUrl;
+                    }
+                    
                     // Show the preview section
                     previewSection.style.display = 'block';
                 } else {
-                    // Either registration or DOB is incorrect
+                    // Student not found
                     resultDiv.className = 'result-container error';
                     resultDiv.innerHTML = `
                         <h3>Verification Failed</h3>
@@ -702,7 +683,19 @@
                 }
                 
                 resultDiv.style.display = 'block';
-            }, 1500);
+            } catch (error) {
+                // Handle errors
+                console.error("Error fetching student data: ", error);
+                loadingDiv.style.display = 'none';
+                
+                resultDiv.className = 'result-container error';
+                resultDiv.innerHTML = `
+                    <h3>Error</h3>
+                    <p>There was a problem verifying your details. Please try again later.</p>
+                `;
+                resultDiv.style.display = 'block';
+                previewSection.style.display = 'none';
+            }
         });
         
         function formatDateForDisplay(dateString) {
