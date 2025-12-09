@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Aradhya Institute of Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Photo Banner Header */
+        .photo-banner-header {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.8), rgba(106, 13, 173, 0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 800px;
+        }
+        
+        .banner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .banner-logo-image {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+        
+        .banner-logo-image img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+        
+        .banner-text h1 {
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .banner-text h2 {
+            font-size: 1.4rem;
+            font-weight: normal;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .banner-tagline {
+            background-color: rgba(255, 204, 0, 0.9);
+            color: #4b0082;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #4b0082;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #666;
+        }
+        
+        .breadcrumb .current {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        /* About Content Section */
+        .about-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ffcc00;
+        }
+        
+        .about-header h1 {
+            color: #4b0082;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .about-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-section h2 {
+            color: #4b0082;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .content-section h2 i {
+            margin-right: 10px;
+            color: #ffcc00;
+        }
+        
+        .content-section p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .content-section ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .content-section li {
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+        
+        .highlight-box {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4b0082;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .highlight-box h3 {
+            color: #4b0082;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-box h3 i {
+            margin-right: 10px;
+            color: #ffcc00;
+        }
+        
+        /* Mission Vision Section */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .mission-box, .vision-box {
+            background: linear-gradient(to right, #4b0082, #6a0dad);
+            color: white;
+            padding: 30px;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .mission-box::before, .vision-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80') no-repeat center right;
+            background-size: cover;
+            opacity: 0.2;
+        }
+        
+        .mission-box h3, .vision-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mission-box h3 i, .vision-box h3 i {
+            margin-right: 10px;
+            color: #ffcc00;
+        }
+        
+        .mission-box p, .vision-box p {
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+        
+        /* Values Section */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .value-box {
+            background-color: #f0f0f0;
+            padding: 25px;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid #4b0082;
+        }
+        
+        .value-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        
+        .value-icon {
+            background-color: #4b0082;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+        
+        .value-box h4 {
+            color: #4b0082;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .value-box p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c003e;
+            color: white;
+            margin-top: 40px;
+            padding: 30px 0 20px;
+            position: relative;
+        }
+        
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo-img {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffcc00;
+            overflow: hidden;
+        }
+        
+        .footer-logo-img img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .footer-nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        .footer-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .photo-banner-header {
+                height: 250px;
+            }
+            
+            .banner-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1.2rem;
+            }
+            
+            .banner-logo {
+                flex-direction: column;
+            }
+            
+            .banner-logo-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .about-content {
+                padding: 25px;
+            }
+            
+            .values-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-nav a {
+                margin: 5px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-banner-header {
+                height: 200px;
+            }
+            
+            .banner-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1rem;
+            }
+            
+            .banner-tagline {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+            
+            .about-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Photo Banner Header -->
+    <div class="photo-banner-header">
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
+             alt="AIT Campus Banner" class="banner-image">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <div class="banner-logo">
+                    <div class="banner-logo-image">
+                        <img src="https://i.ibb.co/Mksb8vF0/logo.png" alt="AIT Logo">
+                    </div>
+                    <div class="banner-text">
+                        <h1>Aradhya Institute of Technology</h1>
+                        <h2>Empowering Education Through Innovation</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="current">About Us</li>
+            </ul>
+        </nav>
+
+        <!-- About Content Section -->
+        <section class="about-content">
+            <div class="about-header">
+                <h1>About Aradhya Institute of Technology</h1>
+                <p>Empowering students with quality education and skill development for over four decades</p>
+            </div>
+
+            <!-- Who We Are Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-university"></i> Who We Are</h2>
+                <p>Aradhya Institute of Technology (AIT) is a premier educational institution dedicated to providing quality computer education and technical training to students from diverse backgrounds. With a legacy spanning over four decades, we have established ourselves as a trusted name in the field of education.</p>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-bullseye"></i> Our Purpose</h3>
+                    <p>We are here to bring all students from different disciplines and skill sets to one basic management platform, from where they will be in a position to move in a path of enrichment of knowledge, acquisition of skill and fine tenement of attitude that takes them to the destination.</p>
+                </div>
+                
+                <p>We provide an opportunity for students to identify themselves among others and realize their level when compared to the expected standards of the corporate world. Our focus is on bridging the gap between academic learning and industry requirements.</p>
+            </div>
+
+            <!-- Mission & Vision Section -->
+            <div class="mission-vision">
+                <div class="mission-box">
+                    <h3><i class="fas fa-flag"></i> Our Mission</h3>
+                    <p>To literate the masses in computer education through quality-focused teaching methodologies. We believe in delivering education that emphasizes quality over quantity, ensuring each student receives personalized attention and comprehensive learning.</p>
+                </div>
+                
+                <div class="vision-box">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To become a nationally recognized institution that transforms students into skilled professionals equipped to meet the challenges of the modern technological landscape, while maintaining our commitment to excellence and innovation in education.</p>
+                </div>
+            </div>
+
+            <!-- Objectives Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-tasks"></i> Our Objectives</h2>
+                <p>At Aradhya Institute of Technology, our educational objectives are designed to provide comprehensive development for our students:</p>
+                
+                <ul>
+                    <li><strong>To familiarize students with growth & prosperity environment</strong> - Creating an ecosystem that promotes professional and personal growth.</li>
+                    <li><strong>To develop human relationships with group dynamism</strong> - Fostering teamwork and interpersonal skills essential for workplace success.</li>
+                    <li><strong>To enhance their confidence to communicate with others</strong> - Building effective communication skills for professional and social contexts.</li>
+                    <li><strong>To identify & explore capabilities by utilizing their potentials</strong> - Helping students discover and maximize their inherent talents and abilities.</li>
+                </ul>
+                
+                <p>Our formula for success is based on the belief that there is a winner in every student waiting to be discovered. AIT brings together eminent trainers, comprehensive study material, and a highly-focused, uniquely measured training methodology.</p>
+            </div>
+
+            <!-- Core Values Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-heart"></i> Our Core Values</h2>
+                <p>The foundation of our institution is built upon these core principles that guide our educational approach:</p>
+                
+                <div class="values-container">
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Excellence in Education</h4>
+                        <p>Maintaining the highest standards of teaching and learning outcomes.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Student-Centered Approach</h4>
+                        <p>Prioritizing individual student needs and learning styles.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Innovation</h4>
+                        <p>Embracing new technologies and teaching methodologies.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Integrity</h4>
+                        <p>Upholding ethical standards in all our operations.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Continuous Improvement</h4>
+                        <p>Constantly evolving to meet changing educational needs.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h4>Industry Relevance</h4>
+                        <p>Aligning curriculum with current industry requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legacy Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-history"></i> Our Legacy</h2>
+                <p>For over four decades, the name AIT has not just been well known, but acknowledged as a landmark on the road to higher education across India. This trust and track record have been built through:</p>
+                
+                <ul>
+                    <li><strong>Adherence to Excellence</strong> - Maintaining uncompromising quality standards in education delivery.</li>
+                    <li><strong>Empowering Dedication</strong> - Committed faculty who go beyond teaching to mentor students.</li>
+                    <li><strong>Comprehensive Resources</strong> - State-of-the-art facilities and updated study materials.</li>
+                    <li><strong>Proven Methodology</strong> - A training approach that has successfully transformed thousands of students.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-quote-left"></i> Education That Matters</h3>
+                    <p>"Education is not just about acquiring knowledge; it's about developing the skills, attitude, and mindset needed to succeed in today's competitive world. At AIT, we focus on holistic development that prepares students for both professional success and personal fulfillment."</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                 <a href="index.html">Home</a>
+                <a href="About.html">AboutUs</a>
+                <a href="photo_gallary.html">Gallery</a>
+                <a href="centres.html">Centres</a>
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+            
+            <div class="copyright">
+                © Copyright atedu.nr. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for breadcrumb navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Highlight current page in footer navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const footerLinks = document.querySelectorAll('.footer-nav a');
+            
+            footerLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.style.color = '#fff';
+                    link.style.textDecoration = 'underline';
+                }
+            });
+            
+            // Add smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId !== '#') {
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Add animation to value boxes on scroll
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Animate value boxes
+            document.querySelectorAll('.value-box').forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(20px)';
+                box.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(box);
+            });
+            
+            // Animate mission/vision boxes
+            document.querySelectorAll('.mission-box, .vision-box').forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(20px)';
+                box.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(box);
+            });
+        });
+    </script>
+</body>
+</html>

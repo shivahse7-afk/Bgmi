@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Enquiry - Aradhya Institute of Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Photo Banner Header */
+        .photo-banner-header {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.8), rgba(106, 13, 173, 0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 800px;
+        }
+        
+        .banner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .banner-logo-image {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+        
+        .banner-logo-image img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+        
+        .banner-text h1 {
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .banner-text h2 {
+            font-size: 1.4rem;
+            font-weight: normal;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #4b0082;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #666;
+        }
+        
+        .breadcrumb .current {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+        
+        /* Enquiry Header */
+        .enquiry-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ffcc00;
+        }
+        
+        .enquiry-header h1 {
+            color: #4b0082;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .enquiry-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Enquiry Form Container */
+        .enquiry-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 992px) {
+            .enquiry-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Form Section */
+        .form-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            color: #4b0082;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffcc00;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #ffcc00;
+        }
+        
+        /* Personal Information Form */
+        .personal-info-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4b0082;
+            font-weight: 500;
+        }
+        
+        .form-group label span {
+            color: #ff0000;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #4b0082;
+            outline: none;
+        }
+        
+        .gender-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        
+        .gender-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .gender-option input {
+            width: auto;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        /* Courses Section */
+        .courses-section {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .course-option {
+            background-color: #f9f9f9;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .course-option:hover {
+            background-color: #f0f0f0;
+            border-color: #4b0082;
+            transform: translateY(-3px);
+        }
+        
+        .course-option.selected {
+            background-color: #e6f7ff;
+            border-color: #4b0082;
+            box-shadow: 0 3px 10px rgba(75, 0, 130, 0.1);
+        }
+        
+        .course-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .course-name {
+            color: #333;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .course-name::before {
+            content: "";
+            width: 18px;
+            height: 18px;
+            border: 2px solid #4b0082;
+            border-radius: 3px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .course-option.selected .course-name::before {
+            background-color: #4b0082;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+            background-size: 12px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .course-category {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .category-title {
+            color: #4b0082;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Course Categories */
+        .course-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .category-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .category-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .category-btn.active {
+            background-color: #4b0082;
+            color: white;
+        }
+        
+        /* Submit Button */
+        .submit-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .submit-btn {
+            background-color: #4b0082;
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #6a0dad;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .form-note {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 25px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .success-message i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #28a745;
+        }
+        
+        /* Form Validation */
+        .error-message {
+            color: #ff0000;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #ff0000;
+        }
+        
+        .form-group.error .error-message {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c003e;
+            color: white;
+            margin-top: 40px;
+            padding: 30px 0 20px;
+            position: relative;
+        }
+        
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo-img {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffcc00;
+            overflow: hidden;
+        }
+        
+        .footer-logo-img img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .footer-nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        .footer-nav a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .photo-banner-header {
+                height: 250px;
+            }
+            
+            .banner-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1.2rem;
+            }
+            
+            .banner-logo {
+                flex-direction: column;
+            }
+            
+            .banner-logo-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .form-section, .courses-section {
+                padding: 25px;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .enquiry-header h1 {
+                font-size: 2rem;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-nav a {
+                margin: 5px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-banner-header {
+                height: 200px;
+            }
+            
+            .banner-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1rem;
+            }
+            
+            .form-section, .courses-section {
+                padding: 20px;
+            }
+            
+            .gender-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Photo Banner Header -->
+    <div class="photo-banner-header">
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" 
+             alt="AIT Campus Banner" class="banner-image">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <div class="banner-logo">
+                    <div class="banner-logo-image">
+                        <img src="https://i.ibb.co/Mksb8vF0/logo.png" alt="AIT Logo">
+                    </div>
+                    <div class="banner-text">
+                        <h1>Aradhya Institute of Technology</h1>
+                        <h2>Empowering Education Through Innovation</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="current">Online Enquiry</li>
+            </ul>
+        </nav>
+
+        <!-- Enquiry Header -->
+        <div class="enquiry-header">
+            <h1><i class="fas fa-graduation-cap"></i> Online Course Enquiry</h1>
+            <p>Fill out the form below to get detailed information about our courses, fee structure, admission process, and more. Our team will contact you within 24 hours.</p>
+        </div>
+
+        <!-- Enquiry Form Container -->
+        <div class="enquiry-container">
+            <!-- Personal Information Form -->
+            <div class="form-section">
+                <h2 class="section-title"><i class="fas fa-user-circle"></i> Personal Information</h2>
+                
+                <form class="personal-info-form" id="personalInfoForm">
+                    <div class="form-group">
+                        <label for="fullName">Enter Name <span>*</span></label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Your full name">
+                        <div class="error-message">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fatherName">Father's Name <span>*</span></label>
+                        <input type="text" id="fatherName" name="fatherName" required placeholder="Your father's name">
+                        <div class="error-message">Please enter your father's name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="motherName">Mother's Name <span>*</span></label>
+                        <input type="text" id="motherName" name="motherName" required placeholder="Your mother's name">
+                        <div class="error-message">Please enter your mother's name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dob">Date of Birth <span>*</span></label>
+                        <input type="date" id="dob" name="dob" required>
+                        <div class="error-message">Please select your date of birth</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Gender <span>*</span></label>
+                        <div class="gender-group">
+                            <div class="gender-option">
+                                <input type="radio" id="male" name="gender" value="Male" required>
+                                <label for="male">Male</label>
+                            </div>
+                            <div class="gender-option">
+                                <input type="radio" id="female" name="gender" value="Female" required>
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+                        <div class="error-message">Please select your gender</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address <span>*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <div class="error-message">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span>*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="10-digit mobile number">
+                        <div class="error-message">Please enter a valid 10-digit phone number</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Address <span>*</span></label>
+                        <textarea id="address" name="address" required placeholder="Your complete address with city and PIN code"></textarea>
+                        <div class="error-message">Please enter your complete address</div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Courses Selection Section -->
+            <div class="courses-section">
+                <h2 class="section-title"><i class="fas fa-book-open"></i> Course Selection</h2>
+                <p style="color: #666; margin-bottom: 20px;">Select the course(s) you're interested in. You can select multiple courses.</p>
+                
+                <!-- Course Categories Filter -->
+                <div class="course-categories" id="courseCategories">
+                    <button class="category-btn active" data-category="all">All Courses</button>
+                    <button class="category-btn" data-category="computer">Computer</button>
+                    <button class="category-btn" data-category="technical">Technical</button>
+                    <button class="category-btn" data-category="diploma">Diploma</button>
+                    <button class="category-btn" data-category="certificate">Certificate</button>
+                    <button class="category-btn" data-category="driving">Driving</button>
+                    <button class="category-btn" data-category="beauty">Beauty</button>
+                </div>
+                
+                <!-- Courses Grid -->
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Computer Courses -->
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course1" name="courses" value="D.C.A.">
+                        <label for="course1" class="course-name">D.C.A. (Diploma in Computer Application)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course2" name="courses" value="A.D.C.A.">
+                        <label for="course2" class="course-name">A.D.C.A. (Advanced Diploma in Computer Application)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course3" name="courses" value="D.F.A.">
+                        <label for="course3" class="course-name">D.F.A. (Diploma in Financial Accounting)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course4" name="courses" value="D.T.R.">
+                        <label for="course4" class="course-name">D.T.R. (Diploma in Tax & Revenue)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course5" name="courses" value="TALV">
+                        <label for="course5" class="course-name">TALV (Technical Automotive Light Vehicle)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course6" name="courses" value="C.F.A.">
+                        <label for="course6" class="course-name">C.F.A. (Certificate in Financial Accounting)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course7" name="courses" value="C.C.C.">
+                        <label for="course7" class="course-name">C.C.C. (Course on Computer Concepts)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course8" name="courses" value="MOBILE">
+                        <label for="course8" class="course-name">MOBILE Repairing Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course9" name="courses" value="D.A.R.">
+                        <label for="course9" class="course-name">D.A.R. (Diploma in Auto Repairing)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course10" name="courses" value="A.C.R.M.C.">
+                        <label for="course10" class="course-name">A.C.R.M.C. (AC, Refrigerator & Microwave Repairing)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course11" name="courses" value="R.B.M.C.">
+                        <label for="course11" class="course-name">R.B.M.C. (Refrigerator & Battery Maintenance Course)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course12" name="courses" value="D.E.E.">
+                        <label for="course12" class="course-name">D.E.E. (Diploma in Electrical Engineering)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course13" name="courses" value="A.C.R.C.C.">
+                        <label for="course13" class="course-name">A.C.R.C.C. (AC & Refrigerator Certificate Course)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course14" name="courses" value="M.D.C.A.">
+                        <label for="course14" class="course-name">M.D.C.A. (Master Diploma in Computer Application)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="certificate">
+                        <input type="checkbox" id="course15" name="courses" value="ABC VILLAGE">
+                        <label for="course15" class="course-name">ABC Village Certificate Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="certificate">
+                        <input type="checkbox" id="course16" name="courses" value="E.L.C.C.">
+                        <label for="course16" class="course-name">E.L.C.C. (Electrician Certificate Course)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course17" name="courses" value="PIPE FITTER">
+                        <label for="course17" class="course-name">PIPE FITTER Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course18" name="courses" value="C++">
+                        <label for="course18" class="course-name">C++ Programming Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course19" name="courses" value="PLUMBER">
+                        <label for="course19" class="course-name">PLUMBER (C.O.P.)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course20" name="courses" value="D.F.S.M.">
+                        <label for="course20" class="course-name">Diploma in Fire & Safety Management (D.F.S.M.)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course21" name="courses" value="B.C.C.">
+                        <label for="course21" class="course-name">B.C.C. (Basic Computer Course)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course22" name="courses" value="D.R.S.M.">
+                        <label for="course22" class="course-name">Diploma in Retail Safety Management (D.R.S.M.)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course23" name="courses" value="N.T.T.">
+                        <label for="course23" class="course-name">N.T.T. (Nursery Teacher Training)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course24" name="courses" value="D.MECHANICAL">
+                        <label for="course24" class="course-name">Diploma in Mechanical</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course25" name="courses" value="A.D.A.R.">
+                        <label for="course25" class="course-name">A.D.A.R. (Advanced Diploma in Auto Repairing)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course26" name="courses" value="D.C.H.N.">
+                        <label for="course26" class="course-name">D.C.H.N. (Diploma in Computer Hardware & Networking)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course27" name="courses" value="D.E.E.">
+                        <label for="course27" class="course-name">D.E.E. (Diploma in Electrical Engineering)</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="driving">
+                        <input type="checkbox" id="course28" name="courses" value="L.M.V.">
+                        <label for="course28" class="course-name">L.M.V. Driving Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="computer">
+                        <input type="checkbox" id="course29" name="courses" value="TYPING">
+                        <label for="course29" class="course-name">TYPING Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="driving">
+                        <input type="checkbox" id="course30" name="courses" value="H.M.V.">
+                        <label for="course30" class="course-name">H.M.V. Driving Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course31" name="courses" value="D.FITTER">
+                        <label for="course31" class="course-name">Diploma in Fitter</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="beauty">
+                        <input type="checkbox" id="course32" name="courses" value="BEAUTICIAN">
+                        <label for="course32" class="course-name">Beautician Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="beauty">
+                        <input type="checkbox" id="course33" name="courses" value="BEAUTY THERAPIST">
+                        <label for="course33" class="course-name">Beauty Therapist Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="beauty">
+                        <input type="checkbox" id="course34" name="courses" value="BRIDAL MAKEUP">
+                        <label for="course34" class="course-name">Bridal & Event Make-up Specialist Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="certificate">
+                        <input type="checkbox" id="course35" name="courses" value="SKYING">
+                        <label for="course35" class="course-name">Skying Certificate Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="certificate">
+                        <input type="checkbox" id="course36" name="courses" value="SLAI KADHAI">
+                        <label for="course36" class="course-name">Slai and Kadhai Certificate Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course37" name="courses" value="D.PIPE FITTER">
+                        <label for="course37" class="course-name">Diploma in Pipe Fitter</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="certificate">
+                        <input type="checkbox" id="course38" name="courses" value="ABC ARGON">
+                        <label for="course38" class="course-name">ABC and Argon Certificate Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course39" name="courses" value="D.ELECTRICAL">
+                        <label for="course39" class="course-name">Diploma in Electrical</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course40" name="courses" value="PCB REPAIRING">
+                        <label for="course40" class="course-name">All Type PCB Repairing Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="language">
+                        <input type="checkbox" id="course41" name="courses" value="ENGLISH">
+                        <label for="course41" class="course-name">English Speaking Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course42" name="courses" value="D.HVAC">
+                        <label for="course42" class="course-name">Diploma in HVAC Technician</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course43" name="courses" value="D.LIFT">
+                        <label for="course43" class="course-name">Diploma in Lift Technician</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course44" name="courses" value="D.ELECTRICAL TECH">
+                        <label for="course44" class="course-name">Diploma in Electrical Technician</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course45" name="courses" value="D.PUMP TECH">
+                        <label for="course45" class="course-name">Diploma in Pump Technician</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course46" name="courses" value="D.MECHANICAL TECH">
+                        <label for="course46" class="course-name">Diploma in Mechanical Technician</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="technical">
+                        <input type="checkbox" id="course47" name="courses" value="ELECTRONIC DEVICES">
+                        <label for="course47" class="course-name">Electronic Devices Technician Course</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="diploma">
+                        <input type="checkbox" id="course48" name="courses" value="D.EBETRICIAN">
+                        <label for="course48" class="course-name">Diploma in Ebertician</label>
+                    </div>
+                    
+                    <div class="course-option" data-category="certificate">
+                        <input type="checkbox" id="course49" name="courses" value="CCTV">
+                        <label for="course49" class="course-name">Certificate in CCTV Installation Technician (CCTV)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Section -->
+        <div class="submit-section">
+            <button class="submit-btn" id="submitBtn">
+                <div class="spinner" id="loadingSpinner"></div>
+                <span id="btnText">Submit Enquiry</span>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            <p class="form-note">By submitting this form, you agree to receive information about courses and updates from Aradhya Institute of Technology. We respect your privacy and will not share your information with third parties.</p>
+        </div>
+        
+        <!-- Success Message (hidden by default) -->
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i>
+            <h3>Enquiry Submitted Successfully!</h3>
+            <p>Thank you for your interest in Aradhya Institute of Technology. We have received your enquiry and will contact you within 24 hours with detailed information about the selected courses.</p>
+            <p>For immediate assistance, please call our helpline: <strong>+91 22 1234 5678</strong></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">AboutUs</a>
+                <a href="photo_gallary.html">Gallery</a>
+                <a href="centres.html">Centres</a>
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+            
+            <div class="copyright">
+                © Copyright atedu.nr. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enquiry Form Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const personalInfoForm = document.getElementById('personalInfoForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const successMessage = document.getElementById('successMessage');
+            const courseOptions = document.querySelectorAll('.course-option');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const coursesGrid = document.getElementById('coursesGrid');
+            
+            // Highlight current page in footer navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const footerLinks = document.querySelectorAll('.footer-nav a');
+            
+            footerLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.style.color = '#fff';
+                    link.style.textDecoration = 'underline';
+                }
+            });
+            
+            // Course Selection Functionality
+            courseOptions.forEach(option => {
+                const checkbox = option.querySelector('input[type="checkbox"]');
+                
+                // When clicking anywhere on the option, toggle the checkbox
+                option.addEventListener('click', function(e) {
+                    if (e.target.type !== 'checkbox') {
+                        checkbox.checked = !checkbox.checked;
+                        updateCourseSelection(option, checkbox.checked);
+                    }
+                });
+                
+                // When checkbox is changed directly
+                checkbox.addEventListener('change', function() {
+                    updateCourseSelection(option, this.checked);
+                });
+                
+                // Initialize selection state
+                updateCourseSelection(option, checkbox.checked);
+            });
+            
+            function updateCourseSelection(option, isSelected) {
+                if (isSelected) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            }
+            
+            // Course Category Filter
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const category = this.getAttribute('data-category');
+                    
+                    // Filter courses
+                    courseOptions.forEach(option => {
+                        if (category === 'all' || option.getAttribute('data-category') === category) {
+                            option.style.display = 'block';
+                            setTimeout(() => {
+                                option.style.opacity = '1';
+                                option.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            option.style.opacity = '0';
+                            option.style.transform = 'translateY(10px)';
+                            setTimeout(() => {
+                                option.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Form Validation
+            function validateForm() {
+                let isValid = true;
+                const formGroups = personalInfoForm.querySelectorAll('.form-group');
+                
+                // Clear previous errors
+                formGroups.forEach(group => {
+                    group.classList.remove('error');
+                });
+                
+                // Validate required fields
+                const requiredFields = [
+                    'fullName', 'fatherName', 'motherName', 'dob', 'email', 'phone', 'address'
+                ];
+                
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    const formGroup = field.closest('.form-group');
+                    
+                    if (field.value.trim() === '') {
+                        formGroup.classList.add('error');
+                        isValid = false;
+                    } else if (fieldId === 'email' && !isValidEmail(field.value)) {
+                        formGroup.classList.add('error');
+                        formGroup.querySelector('.error-message').textContent = 'Please enter a valid email address';
+                        isValid = false;
+                    } else if (fieldId === 'phone' && !isValidPhone(field.value)) {
+                        formGroup.classList.add('error');
+                        formGroup.querySelector('.error-message').textContent = 'Please enter a valid 10-digit phone number';
+                        isValid = false;
+                    }
+                });
+                
+                // Validate gender selection
+                const genderSelected = document.querySelector('input[name="gender"]:checked');
+                if (!genderSelected) {
+                    const genderGroup = document.querySelector('.form-group:has(input[name="gender"])');
+                    genderGroup.classList.add('error');
+                    genderGroup.querySelector('.error-message').textContent = 'Please select your gender';
+                    isValid = false;
+                }
+                
+                // Validate at least one course selected
+                const coursesSelected = document.querySelectorAll('input[name="courses"]:checked');
+                if (coursesSelected.length === 0) {
+                    alert('Please select at least one course you are interested in.');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            // Email validation
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Phone validation
+            function isValidPhone(phone) {
+                const phoneRegex = /^[0-9]{10}$/;
+                return phoneRegex.test(phone.replace(/\D/g, ''));
+            }
+            
+            // Phone number formatting
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 10) {
+                    value = value.substring(0, 10);
+                }
+                e.target.value = value;
+            });
+            
+            // Real-time validation for fields
+            const validateFields = ['fullName', 'fatherName', 'motherName', 'email', 'phone', 'address'];
+            validateFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                field.addEventListener('blur', function() {
+                    const formGroup = this.closest('.form-group');
+                    const errorMessage = formGroup.querySelector('.error-message');
+                    
+                    formGroup.classList.remove('error');
+                    
+                    if (this.value.trim() === '') {
+                        formGroup.classList.add('error');
+                        errorMessage.textContent = 'This field is required';
+                    } else if (fieldId === 'email' && !isValidEmail(this.value)) {
+                        formGroup.classList.add('error');
+                        errorMessage.textContent = 'Please enter a valid email address';
+                    } else if (fieldId === 'phone' && !isValidPhone(this.value)) {
+                        formGroup.classList.add('error');
+                        errorMessage.textContent = 'Please enter a valid 10-digit phone number';
+                    } else {
+                        // Valid field - add success styling
+                        this.style.borderColor = '#28a745';
+                    }
+                });
+                
+                field.addEventListener('focus', function() {
+                    this.style.borderColor = '#4b0082';
+                });
+            });
+            
+            // Date of birth validation (must be at least 10 years old)
+            const dobInput = document.getElementById('dob');
+            dobInput.addEventListener('change', function() {
+                const formGroup = this.closest('.form-group');
+                formGroup.classList.remove('error');
+                
+                const selectedDate = new Date(this.value);
+                const today = new Date();
+                const minDate = new Date();
+                minDate.setFullYear(today.getFullYear() - 100); // Max 100 years old
+                const maxDate = new Date();
+                maxDate.setFullYear(today.getFullYear() - 10); // Min 10 years old
+                
+                if (selectedDate > maxDate) {
+                    formGroup.classList.add('error');
+                    formGroup.querySelector('.error-message').textContent = 'You must be at least 10 years old';
+                } else if (selectedDate < minDate) {
+                    formGroup.classList.add('error');
+                    formGroup.querySelector('.error-message').textContent = 'Please enter a valid date of birth';
+                }
+            });
+            
+            // Form Submission
+            submitBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (!validateForm()) {
+                    // Scroll to first error
+                    const firstError = document.querySelector('.form-group.error');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                loadingSpinner.style.display = 'block';
+                btnText.textContent = 'Submitting...';
+                
+                // Collect form data
+                const formData = {
+                    personalInfo: {
+                        fullName: document.getElementById('fullName').value,
+                        fatherName: document.getElementById('fatherName').value,
+                        motherName: document.getElementById('motherName').value,
+                        dob: document.getElementById('dob').value,
+                        gender: document.querySelector('input[name="gender"]:checked').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value,
+                        address: document.getElementById('address').value
+                    },
+                    selectedCourses: Array.from(document.querySelectorAll('input[name="courses"]:checked'))
+                        .map(checkbox => checkbox.value),
+                    submissionDate: new Date().toISOString()
+                };
+                
+                // Simulate form submission (in real implementation, this would be an AJAX call)
+                setTimeout(function() {
+                    // Hide submit button and show success message
+                    submitBtn.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Log form data (in real implementation, send to server)
+                    console.log('Form submitted:', formData);
+                    
+                    // Reset form after 5 seconds (optional)
+                    setTimeout(function() {
+                        personalInfoForm.reset();
+                        // Uncheck all courses
+                        document.querySelectorAll('input[name="courses"]:checked').forEach(checkbox => {
+                            checkbox.checked = false;
+                            updateCourseSelection(checkbox.closest('.course-option'), false);
+                        });
+                        
+                        // Reset UI
+                        successMessage.style.display = 'none';
+                        submitBtn.style.display = 'inline-flex';
+                        submitBtn.disabled = false;
+                        loadingSpinner.style.display = 'none';
+                        btnText.textContent = 'Submit Enquiry';
+                    }, 8000);
+                    
+                }, 2000);
+            });
+            
+            // Initialize animations for course options
+            courseOptions.forEach((option, index) => {
+                option.style.opacity = '0';
+                option.style.transform = 'translateY(20px)';
+                option.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.3s ease';
+                
+                setTimeout(() => {
+                    option.style.opacity = '1';
+                    option.style.transform = 'translateY(0)';
+                }, index * 30);
+            });
+            
+            // Add some sample data for testing
+            document.getElementById('fullName').value = 'Sample User';
+            document.getElementById('fatherName').value = 'Sample Father';
+            document.getElementById('motherName').value = 'Sample Mother';
+            document.getElementById('dob').value = '2000-01-01';
+            document.getElementById('email').value = 'sample@example.com';
+            document.getElementById('phone').value = '9876543210';
+            document.getElementById('address').value = '123 Sample Address, Sample City, Sample State - 123456';
+            
+            // Comment out the above lines for production
+            
+        });
+    </script>
+</body>
+</html>
