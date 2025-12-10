@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Mahatma Gandhi Fire And Safety Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Photo Banner Header */
+        .photo-banner-header {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(139, 0, 0, 0.85), rgba(220, 20, 60, 0.75));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 800px;
+        }
+        
+        .banner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .banner-logo-image {
+            width: 290px;
+            height: 185px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #FFD700;
+            overflow: hidden;
+            margin-right: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .banner-logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .banner-text h1 {
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #fff;
+        }
+        
+        .banner-text h2 {
+            font-size: 1.4rem;
+            font-weight: normal;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            color: #FFD700;
+        }
+        
+        .banner-tagline {
+            background-color: rgba(139, 0, 0, 0.9);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border: 2px solid #FFD700;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+            color: #DC143C;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #666;
+        }
+        
+        .breadcrumb .current {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        /* Gallery Header */
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #FFD700;
+        }
+        
+        .gallery-header h1 {
+            color: #8B0000;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .gallery-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Gallery Filter */
+        .gallery-filter {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-btn {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #555;
+        }
+        
+        .filter-btn:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(to right, #8B0000, #DC143C);
+            color: white;
+            box-shadow: 0 3px 10px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* Photo Gallery Grid - 2x10 Layout */
+        .gallery-container {
+            margin-bottom: 50px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s;
+            height: 300px;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-caption {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 5px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: -10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s;
+        }
+        
+        .lightbox-close:hover {
+            color: #FFD700;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+        
+        .lightbox-prev, .lightbox-next {
+            background-color: rgba(139, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background-color: #FFD700;
+            color: #8B0000;
+            transform: scale(1.1);
+        }
+        
+        /* Gallery Stats */
+        .gallery-stats {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+            color: white;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .stat-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #FFD700;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            border: 2px solid #FFD700;
+        }
+        
+        .stat-number {
+            color: #FFD700;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+        
+        /* Safety Quote */
+        .safety-quote {
+            background-color: #fff5f5;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+            border-left: 4px solid #8B0000;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .safety-quote i {
+            color: #8B0000;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .safety-quote p {
+            color: #8B0000;
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0000;
+            color: white;
+            margin-top: 40px;
+            padding: 30px 0 20px;
+            position: relative;
+        }
+        
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo-img {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #FFD700;
+            overflow: hidden;
+        }
+        
+        .footer-logo-img img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .footer-nav a {
+            color: #FFD700;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        
+        .footer-nav a:hover {
+            text-decoration: underline;
+            color: #fff;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                gap: 20px;
+            }
+            
+            .gallery-item {
+                height: 280px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .photo-banner-header {
+                height: 250px;
+            }
+            
+            .banner-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1.2rem;
+            }
+            
+            .banner-logo {
+                flex-direction: column;
+            }
+            
+            .banner-logo-image {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .gallery-item {
+                height: 300px;
+            }
+            
+            .gallery-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .stat-item {
+                min-width: 200px;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-nav a {
+                margin: 5px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-banner-header {
+                height: 200px;
+            }
+            
+            .banner-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1rem;
+            }
+            
+            .banner-tagline {
+                font-size: 0.9rem;
+                padding: 10px 20px;
+            }
+            
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .lightbox-nav {
+                padding: 0 10px;
+            }
+            
+            .lightbox-prev, .lightbox-next {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Photo Banner Header -->
+    <div class="photo-banner-header">
+        <img src="https://i.ibb.co/0RrR9Rk1/fire-img-1.jpg" 
+             alt="MG Fire and Safety Institute Banner" class="banner-image">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <div class="banner-logo">
+                    <div class="banner-logo-image">
+                        <img src="https://i.ibb.co/mVB4Hyc4/IMG-20251210-161115.png" alt="MG Fire and Safety Institute Logo">
+                    </div>
+                    <div class="banner-text">
+                        <h1>Mahatma Gandhi Fire And Safety Institute</h1>
+                        <h2>Gopalganj - Bihar</h2>
+                    </div>
+                </div>
+                <div class="banner-tagline">Excellence in Fire Safety Training & Education</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="current">Photo Gallery</li>
+            </ul>
+        </nav>
+
+        <!-- Gallery Header -->
+        <div class="gallery-header">
+            <h1><i class="fas fa-fire-extinguisher"></i> Fire Safety Training Gallery</h1>
+            <p>Explore our comprehensive fire safety training programs through real photos of practical sessions, equipment demonstrations, and student activities.</p>
+        </div>
+
+        <!-- Safety Quote -->
+        <div class="safety-quote">
+            <i class="fas fa-quote-left"></i>
+            <p>"Safety training is not just about learning procedures; it's about developing the mindset and skills to save lives in emergency situations."</p>
+        </div>
+
+        <!-- Gallery Filter -->
+        <div class="gallery-filter">
+            <button class="filter-btn active" data-filter="all">All Photos</button>
+            <button class="filter-btn" data-filter="training">Practical Training</button>
+            <button class="filter-btn" data-filter="equipment">Safety Equipment</button>
+            <button class="filter-btn" data-filter="rescue">Rescue Operations</button>
+            <button class="filter-btn" data-filter="students">Student Activities</button>
+            <button class="filter-btn" data-filter="faculty">Faculty Sessions</button>
+        </div>
+
+        <!-- Photo Gallery Grid - 2x10 Layout with REAL FIRE SAFETY PHOTOS -->
+        <div class="gallery-container">
+            <div class="gallery-grid" id="photoGallery">
+                <!-- Row 1 - Practical Training -->
+                <div class="gallery-item" data-category="training">
+                    <img src="asset/Blog-FireSafety-Training-v1-1536x804.webp" 
+                         alt="Fire Extinguisher Training" data-index="1">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Fire Extinguisher Training</div>
+                        <div class="gallery-description">Hands-on training with various types of fire extinguishers</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="equipment">
+                    <img src="asset/fire-extinguisher-has-hand-engineer-260nw-2302759673.jpg" 
+                         alt="Fire Safety Equipment" data-index="2">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Safety Equipment Demonstration</div>
+                        <div class="gallery-description">Demonstration of modern fire safety equipment and gear</div>
+                    </div>
+                </div>
+                
+                <!-- Row 2 - Rescue Operations -->
+                <div class="gallery-item" data-category="rescue">
+                    <img src="https://i.ibb.co/Y7ZJ7WwF/Picsart-25-12-10-19-18-54-777.jpg" 
+                         alt="Rescue Training" data-index="3">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Rescue Operation Training</div>
+                        <div class="gallery-description">Training in rescue techniques and victim extraction</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="training">
+                    <img src="asset/fire hose.jpg" 
+                         alt="Hose Training" data-index="4">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Fire Hose Handling</div>
+                        <div class="gallery-description">Proper techniques for handling and operating fire hoses</div>
+                    </div>
+                </div>
+                
+                <!-- Row 3 - Student Activities -->
+                <div class="gallery-item" data-category="students">
+                    <img src="asset/scaffolding-training-home-img.jpg" 
+                         alt="Student Practical Session" data-index="5">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Student Practical Session</div>
+                        <div class="gallery-description">Students practicing fire safety procedures under supervision</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="equipment">
+                    <img src="asset/1_2021-02-25 11.10.40.jpg" 
+                         alt="Breathing Apparatus" data-index="6">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">SCBA Training</div>
+                        <div class="gallery-description">Training with Self-Contained Breathing Apparatus</div>
+                    </div>
+                </div>
+                
+                <!-- Row 4 - Faculty Sessions -->
+                <div class="gallery-item" data-category="faculty">
+                    <img src="asset/safety-emergency-procedures.webp" 
+                         alt="Faculty Demonstration" data-index="7">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Expert Faculty Demonstration</div>
+                        <div class="gallery-description">Experienced faculty demonstrating advanced techniques</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="training">
+                    <img src="asset/Contractor-Accreditation1.jpg" 
+                         alt="Ladder Training" data-index="8">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Ladder Safety Training</div>
+                        <div class="gallery-description">Proper use and safety procedures for fire service ladders</div>
+                    </div>
+                </div>
+                
+                <!-- Row 5 - Rescue Operations -->
+                <div class="gallery-item" data-category="rescue">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Emergency Response" data-index="9">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Emergency Response Drill</div>
+                        <div class="gallery-description">Simulated emergency response and evacuation procedures</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="students">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" 
+                         alt="Group Training" data-index="10">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Group Training Session</div>
+                        <div class="gallery-description">Students working together in team-based firefighting exercises</div>
+                    </div>
+                </div>
+                
+                <!-- Row 6 - Equipment Training -->
+                <div class="gallery-item" data-category="equipment">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=70" 
+                         alt="Fire Truck Training" data-index="11">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Fire Truck Operations</div>
+                        <div class="gallery-description">Training on fire truck equipment and operations</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=70" 
+                         alt="Search and Rescue" data-index="12">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Search & Rescue Training</div>
+                        <div class="gallery-description">Training in search techniques and rescue operations</div>
+                    </div>
+                </div>
+                
+                <!-- Row 7 - Faculty Sessions -->
+                <div class="gallery-item" data-category="faculty">
+                    <img src="https://images.unsplash.com/photo-1544098284-5a7b62e7f4d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=70" 
+                         alt="Classroom Training" data-index="13">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Classroom Theory Session</div>
+                        <div class="gallery-description">Combining theoretical knowledge with practical applications</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="students">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=75" 
+                         alt="Practical Assessment" data-index="14">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Practical Skill Assessment</div>
+                        <div class="gallery-description">Assessment of students' practical firefighting skills</div>
+                    </div>
+                </div>
+                
+                <!-- Row 8 - Rescue Operations -->
+                <div class="gallery-item" data-category="rescue">
+                    <img src="https://images.unsplash.com/photo-1544098284-5a7b62e7f4d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=75" 
+                         alt="Confined Space Rescue" data-index="15">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Confined Space Rescue</div>
+                        <div class="gallery-description">Specialized training for confined space rescue operations</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1578321262754-f2a8d1c5dba6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=75" 
+                         alt="Fire Control Techniques" data-index="16">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Fire Control Techniques</div>
+                        <div class="gallery-description">Advanced techniques for controlling different types of fires</div>
+                    </div>
+                </div>
+                
+                <!-- Row 9 - Equipment Training -->
+                <div class="gallery-item" data-category="equipment">
+                    <img src="https://images.unsplash.com/photo-1615655406731-b216e8c3d8e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=75" 
+                         alt="Hydrant Training" data-index="17">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Fire Hydrant Operations</div>
+                        <div class="gallery-description">Proper use and maintenance of fire hydrants</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="faculty">
+                    <img src="https://images.unsplash.com/photo-1584824486509-112e4181ff6b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=75" 
+                         alt="Expert Workshop" data-index="18">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Expert Workshop Session</div>
+                        <div class="gallery-description">Workshop conducted by industry fire safety experts</div>
+                    </div>
+                </div>
+                
+                <!-- Row 10 - Student Activities -->
+                <div class="gallery-item" data-category="students">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Graduation Ceremony" data-index="19">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Certificate Distribution</div>
+                        <div class="gallery-description">Successful students receiving fire safety certifications</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="training">
+                    <img src="https://images.unsplash.com/photo-1578321262754-f2a8d1c5dba6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=85" 
+                         alt="Live Fire Training" data-index="20">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Live Fire Training</div>
+                        <div class="gallery-description">Controlled live fire exercises for real-world experience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gallery Stats -->
+        <div class="gallery-stats">
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-fire-extinguisher"></i>
+                </div>
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Training Photos</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Students Trained</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Expert Faculty</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Certification Rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            
+            <div class="lightbox-nav">
+                <button class="lightbox-prev" id="lightboxPrev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="lightbox-next" id="lightboxNext">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <img class="lightbox-img" id="lightboxImage" src="" alt="Fire Safety Training Image">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="About.html">About Us</a>
+                <a href="photo_gallary.html">Gallery</a>
+                
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+            
+            <div class="copyright">
+                © Copyright Mahatma Gandhi Fire And Safety Institute, Gopalganj. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            
+            // Current image index for lightbox navigation
+            let currentImageIndex = 0;
+            const totalImages = galleryItems.length;
+            
+            // Highlight current page in footer navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const footerLinks = document.querySelectorAll('.footer-nav a');
+            
+            footerLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.style.color = '#fff';
+                    link.style.textDecoration = 'underline';
+                }
+            });
+            
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox functionality
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').getAttribute('src');
+                    const imgAlt = this.querySelector('img').getAttribute('alt');
+                    const caption = this.querySelector('.gallery-caption').textContent;
+                    const description = this.querySelector('.gallery-description').textContent;
+                    
+                    // Set lightbox content
+                    lightboxImage.src = imgSrc;
+                    lightboxImage.alt = imgAlt;
+                    lightboxCaption.innerHTML = `<strong>${caption}</strong><br><small>${description}</small>`;
+                    
+                    // Set current index
+                    currentImageIndex = parseInt(this.querySelector('img').getAttribute('data-index')) - 1;
+                    
+                    // Show lightbox
+                    lightboxModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Lightbox navigation
+            function showImage(index) {
+                // Ensure index is within bounds
+                if (index < 0) index = totalImages - 1;
+                if (index >= totalImages) index = 0;
+                
+                currentImageIndex = index;
+                
+                // Find the corresponding gallery item
+                const targetItem = Array.from(galleryItems).find(item => {
+                    return parseInt(item.querySelector('img').getAttribute('data-index')) === index + 1;
+                });
+                
+                if (targetItem) {
+                    const imgSrc = targetItem.querySelector('img').getAttribute('src');
+                    const imgAlt = targetItem.querySelector('img').getAttribute('alt');
+                    const caption = targetItem.querySelector('.gallery-caption').textContent;
+                    const description = targetItem.querySelector('.gallery-description').textContent;
+                    
+                    // Set lightbox content
+                    lightboxImage.src = imgSrc;
+                    lightboxImage.alt = imgAlt;
+                    lightboxCaption.innerHTML = `<strong>${caption}</strong><br><small>${description}</small>`;
+                }
+            }
+            
+            // Lightbox event listeners
+            lightboxClose.addEventListener('click', function() {
+                lightboxModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            lightboxPrev.addEventListener('click', function() {
+                showImage(currentImageIndex - 1);
+            });
+            
+            lightboxNext.addEventListener('click', function() {
+                showImage(currentImageIndex + 1);
+            });
+            
+            // Close lightbox on background click
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    lightboxModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Keyboard navigation for lightbox
+            document.addEventListener('keydown', function(e) {
+                if (lightboxModal.style.display === 'flex') {
+                    if (e.key === 'Escape') {
+                        lightboxModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    } else if (e.key === 'ArrowLeft') {
+                        showImage(currentImageIndex - 1);
+                    } else if (e.key === 'ArrowRight') {
+                        showImage(currentImageIndex + 1);
+                    }
+                }
+            });
+            
+            // Initialize gallery animations
+            galleryItems.forEach((item, index) => {
+                // Staggered animation on load
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
+                
+                // Initial state for animation
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+            
+            // Stats counter animation
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statNumber = entry.target;
+                        const targetValue = parseInt(statNumber.textContent);
+                        const increment = targetValue / 50;
+                        let currentValue = 0;
+                        
+                        const timer = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= targetValue) {
+                                if (targetValue === 100) {
+                                    statNumber.textContent = targetValue + '%';
+                                } else {
+                                    statNumber.textContent = targetValue + '+';
+                                }
+                                clearInterval(timer);
+                            } else {
+                                if (targetValue === 100) {
+                                    statNumber.textContent = Math.floor(currentValue) + '%';
+                                } else {
+                                    statNumber.textContent = Math.floor(currentValue) + '+';
+                                }
+                            }
+                        }, 30);
+                        
+                        observer.unobserve(statNumber);
+                    }
+                });
+            }, observerOptions);
+            
+            statNumbers.forEach(number => {
+                observer.observe(number);
+            });
+            
+            // Add hover effect to filter buttons
+            filterButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.background = 'linear-gradient(to right, #DC143C, #8B0000)';
+                        this.style.color = 'white';
+                    }
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.background = '#f0f0f0';
+                        this.style.color = '#555';
+                    }
+                });
+            });
+            
+            // Set current year in copyright
+            const copyrightElement = document.querySelector('.copyright');
+            if (copyrightElement) {
+                const currentYear = new Date().getFullYear();
+                copyrightElement.innerHTML = `© Copyright ${currentYear} Mahatma Gandhi Fire And Safety Institute, Gopalganj. All Rights Reserved.`;
+            }
+        });
+    </script>
+</body>
+</html>
