@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Mahatma Gandhi Fire And Safety Institute</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* ===== UPDATED HEADER WITH NAVIGATION ===== */
+        .main-header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #FFD700;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .logo-img img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            flex: 1;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+            color: #8B0000;
+            line-height: 1.3;
+        }
+        
+        .logo-text h2 {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: #666;
+        }
+        
+        .mobile-logo {
+            display: none;
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .mobile-logo h1 {
+            font-size: 1.2rem;
+            color: #8B0000;
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        .nav-desktop {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-desktop a {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .nav-desktop a:hover {
+            background-color: #8B0000;
+            color: white;
+        }
+        
+        .nav-desktop a.active {
+            background-color: #8B0000;
+            color: white;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #8B0000;
+            cursor: pointer;
+        }
+        
+        .nav-mobile {
+            display: none;
+            background-color: white;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-mobile.active {
+            display: block;
+        }
+        
+        .nav-mobile a {
+            display: block;
+            color: #8B0000;
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+        }
+        
+        .nav-mobile a.active {
+            color: #8B0000;
+            font-weight: bold;
+            background-color: rgba(139, 0, 0, 0.1);
+        }
+        
+        .nav-mobile a:last-child {
+            border-bottom: none;
+        }
+        
+        /* Student Portal */
+        .student-portal {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 14px 25px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #FFD700;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .student-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        .student-portal h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+        
+        .student-portal p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ===== PHOTO BANNER HEADER ===== */
+        .photo-banner-header {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.85), rgba(178, 34, 34, 0.75));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .banner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .banner-logo-image {
+            width: 130px;
+            height: 130px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid #FFD700;
+            overflow: hidden;
+            margin-right: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+        
+        .banner-logo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
+        }
+        
+        .banner-text {
+            text-align: left;
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .banner-text h1 {
+            font-size: 2.2rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            color: #fff;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            line-height: 1.3;
+        }
+        
+        .banner-text h2 {
+            font-size: 1.3rem;
+            font-weight: normal;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+            color: #FFD700;
+        }
+        
+        .banner-tagline {
+            background-color: rgba(220, 20, 60, 0.9);
+            color: #fff;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 2px solid #FFD700;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb li {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+            color: #DC143C;
+        }
+        
+        .breadcrumb li:not(:last-child)::after {
+            content: ">";
+            margin: 0 10px;
+            color: #666;
+        }
+        
+        .breadcrumb .current {
+            color: #8B0000;
+            font-weight: bold;
+        }
+        
+        /* About Content Section */
+        .about-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #FFD700;
+        }
+        
+        .about-header h1 {
+            color: #8B0000;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .about-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            margin-bottom: 40px;
+        }
+        
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .content-section h2 {
+            color: #8B0000;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .content-section h2 i {
+            margin-right: 10px;
+            color: #FFD700;
+        }
+        
+        .content-section p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .content-section ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .content-section li {
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+        
+        .highlight-box {
+            background-color: #fff5f5;
+            border-left: 4px solid #8B0000;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1578321262754-f2a8d1c5dba6?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80') no-repeat center right;
+            background-size: cover;
+            opacity: 0.1;
+        }
+        
+        .highlight-box h3 {
+            color: #8B0000;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight-box h3 i {
+            margin-right: 10px;
+            color: #FFD700;
+        }
+        
+        .highlight-box p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Mission Vision Section */
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .mission-box, .vision-box {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .mission-box::before, .vision-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1578321262754-f2a8d1c5dba6?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80') no-repeat center right;
+            background-size: cover;
+            opacity: 0.2;
+        }
+        
+        .mission-box h3, .vision-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        .mission-box h3 i, .vision-box h3 i {
+            margin-right: 10px;
+            color: #FFD700;
+        }
+        
+        .mission-box p, .vision-box p {
+            position: relative;
+            z-index: 1;
+            line-height: 1.7;
+        }
+        
+        /* Values Section */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .value-box {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid #8B0000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        
+        .value-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            background-color: #fff;
+            border-top-color: #FFD700;
+        }
+        
+        .value-icon {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.2);
+        }
+        
+        .value-box h4 {
+            color: #8B0000;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .value-box p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Fire Safety Focus Section */
+        .safety-focus {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.2);
+        }
+        
+        .safety-focus::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1615655406731-b216e8c3d8e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80') no-repeat center right;
+            background-size: cover;
+            opacity: 0.2;
+        }
+        
+        .safety-focus h2 {
+            color: #FFD700;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .safety-focus p {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        
+        /* Training Programs Section */
+        .training-programs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .program-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #FFD700;
+            backdrop-filter: blur(5px);
+        }
+        
+        .program-box h4 {
+            color: #FFD700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .program-box h4 i {
+            margin-right: 10px;
+        }
+        
+        .program-box p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #5a0000;
+            color: white;
+            margin-top: 40px;
+            padding: 30px 0 20px;
+            position: relative;
+        }
+        
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo-img {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #FFD700;
+            overflow: hidden;
+        }
+        
+        .footer-logo-img img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            gap: 20px;
+        }
+        
+        .footer-nav a {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .footer-nav a:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+            text-decoration: underline;
+        }
+        
+        .footer-nav a.active {
+            color: #fff;
+            background-color: rgba(255, 215, 0, 0.2);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .training-programs {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .logo-section {
+                order: 1;
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .logo-container {
+                margin-right: 15px;
+            }
+            
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text h2 {
+                font-size: 0.8rem;
+            }
+            
+            .nav-desktop {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                order: 2;
+            }
+            
+            .student-portal {
+                order: 3;
+                flex-basis: 100%;
+                margin-top: 10px;
+            }
+            
+            .photo-banner-header {
+                height: 280px;
+                margin-top: 10px;
+            }
+            
+            .banner-logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .banner-logo-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+                width: 110px;
+                height: 110px;
+            }
+            
+            .banner-text {
+                text-align: center;
+            }
+            
+            .banner-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1.1rem;
+            }
+            
+            .banner-tagline {
+                font-size: 1rem;
+                padding: 12px 25px;
+            }
+            
+            .about-content {
+                padding: 25px;
+            }
+            
+            .values-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .safety-focus {
+                padding: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .photo-banner-header {
+                height: 240px;
+            }
+            
+            .banner-text h1 {
+                font-size: 1.6rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1rem;
+            }
+            
+            .banner-logo-image {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .about-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-section h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="main-header">
+        <div class="container">
+            <div class="mobile-logo">
+                <img src="https://i.ibb.co/mVB4Hyc4/IMG-20251210-161115.png" alt="MG Fire and Safety Institute Logo">
+                <h1>Mahatma Gandhi Fire And Safety Institute</h1>
+            </div>
+            
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-container">
+                        <div class="logo-img">
+                            <img src="https://i.ibb.co/mVB4Hyc4/IMG-20251210-161115.png" alt="MG Fire and Safety Institute Logo">
+                        </div>
+                        <div class="logo-text">
+                            <h1>Mahatma Gandhi Fire And Safety Institute</h1>
+                            <h2>Gopalganj - Bihar</h2>
+                        </div>
+                    </div>
+                </div>
+                
+                <nav class="nav-desktop">
+                    <a href="index.html">Home</a>
+                    <a href="About.html" class="active">AboutUs</a>
+                    <a href="photo_gallary.html">Gallery</a>
+                    <a href="contact_us.html">Contact Us</a>
+                </nav>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+              
+            </div>
+            
+            <nav class="nav-mobile" id="navMobile">
+                <a href="index.html">Home</a>
+                <a href="About.html" class="active">AboutUs</a>
+                <a href="photo_gallary.html">Gallery</a>
+                <a href="contact_us.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="current">About Us</li>
+            </ul>
+        </nav>
+
+        <!-- About Content Section -->
+        <section class="about-content">
+            <div class="about-header">
+                <h1>About Mahatma Gandhi Fire And Safety Institute</h1>
+                <p>Pioneering fire safety education and training in Bihar for over a decade</p>
+            </div>
+
+            <!-- Who We Are Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-university"></i> Who We Are</h2>
+                <p>Mahatma Gandhi Fire And Safety Institute (MGI) is a premier institution dedicated to providing comprehensive fire safety education and professional training in Gopalganj, Bihar. Established with a vision to create a safer society through skilled fire safety professionals, we have been at the forefront of fire safety education in the region.</p>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-bullseye"></i> Our Purpose</h3>
+                    <p>We are committed to bringing together students from diverse backgrounds onto a single platform where they can embark on a journey of knowledge enrichment, skill acquisition, and professional development in the critical field of fire safety and emergency response.</p>
+                </div>
+                
+                <p>At MGI, we bridge the gap between theoretical knowledge and practical application, ensuring our students are not only certified but truly competent to handle real-world fire safety challenges. Our programs are designed to meet both national standards and international best practices in fire safety management.</p>
+            </div>
+
+            <!-- Mission & Vision Section -->
+            <div class="mission-vision">
+                <div class="mission-box">
+                    <h3><i class="fas fa-flag"></i> Our Mission</h3>
+                    <p>To educate and train individuals in comprehensive fire safety practices, emergency response protocols, and risk management strategies. We aim to create a society better prepared to prevent, manage, and respond to fire emergencies through skilled professionals.</p>
+                </div>
+                
+                <div class="vision-box">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To become Bihar's leading fire safety training institute, recognized nationally for producing highly competent fire safety professionals who contribute significantly to creating safer workplaces, communities, and environments across India.</p>
+                </div>
+            </div>
+
+            <!-- Fire Safety Focus Section -->
+            <div class="safety-focus">
+                <h2><i class="fas fa-fire-extinguisher"></i> Our Commitment to Fire Safety</h2>
+                <p>In today's world, fire safety is not just a regulatory requirement but a critical life skill. With increasing urbanization and industrial growth, the need for trained fire safety professionals has never been greater. At MGI, we address this need through:</p>
+                
+                <div class="training-programs">
+                    <div class="program-box">
+                        <h4><i class="fas fa-shield-alt"></i> Preventive Training</h4>
+                        <p>Teaching students how to identify and eliminate fire hazards before they become emergencies.</p>
+                    </div>
+                    
+                    <div class="program-box">
+                        <h4><i class="fas fa-first-aid"></i> Emergency Response</h4>
+                        <p>Training in effective firefighting techniques, rescue operations, and first aid procedures.</p>
+                    </div>
+                    
+                    <div class="program-box">
+                        <h4><i class="fas fa-clipboard-check"></i> Compliance & Standards</h4>
+                        <p>Ensuring students understand and can implement national and international fire safety standards.</p>
+                    </div>
+                    
+                    <div class="program-box">
+                        <h4><i class="fas fa-industry"></i> Industrial Safety</h4>
+                        <p>Specialized training for fire safety in industrial settings, factories, and manufacturing units.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objectives Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-tasks"></i> Our Educational Objectives</h2>
+                <p>At Mahatma Gandhi Fire And Safety Institute, our educational objectives are designed to create well-rounded fire safety professionals:</p>
+                
+                <ul>
+                    <li><strong>To develop practical firefighting skills</strong> - Hands-on training with modern equipment and simulated emergency scenarios.</li>
+                    <li><strong>To enhance risk assessment capabilities</strong> - Teaching students to identify potential fire hazards and implement preventive measures.</li>
+                    <li><strong>To build emergency response competence</strong> - Training in swift and effective response to fire emergencies of various scales.</li>
+                    <li><strong>To foster safety leadership qualities</strong> - Developing the ability to lead teams during emergencies and implement safety protocols.</li>
+                    <li><strong>To promote continuous learning</strong> - Encouraging professionals to stay updated with evolving fire safety technologies and regulations.</li>
+                </ul>
+                
+                <p>Our training methodology combines classroom instruction with practical exercises, ensuring that graduates are not only knowledgeable but also confident in applying their skills in real-world situations.</p>
+            </div>
+
+            <!-- Core Values Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-heart"></i> Our Core Values</h2>
+                <p>The foundation of our institute is built upon core principles that guide our educational approach and institutional culture:</p>
+                
+                <div class="values-container">
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h4>Safety First</h4>
+                        <p>Prioritizing safety in all our operations and teachings.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h4>Excellence in Training</h4>
+                        <p>Maintaining highest standards in fire safety education.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Professional Integrity</h4>
+                        <p>Upholding ethical standards in all professional dealings.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Community Service</h4>
+                        <p>Contributing to community safety and awareness.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Innovation</h4>
+                        <p>Embracing new technologies and training methodologies.</p>
+                    </div>
+                    
+                    <div class="value-box">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Continuous Improvement</h4>
+                        <p>Constantly enhancing our curriculum and training methods.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Excellence Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-award"></i> Training Excellence</h2>
+                <p>What sets Mahatma Gandhi Fire And Safety Institute apart is our commitment to training excellence:</p>
+                
+                <ul>
+                    <li><strong>Experienced Faculty</strong> - Our instructors are seasoned professionals with years of field experience in fire safety and emergency response.</li>
+                    <li><strong>Practical Training Facilities</strong> - State-of-the-art training grounds with modern firefighting equipment and simulation setups.</li>
+                    <li><strong>Industry-Relevant Curriculum</strong> - Courses designed in consultation with fire safety experts and industry requirements.</li>
+                    <li><strong>Certification Recognition</strong> - Our certifications are recognized by industry bodies and employers across sectors.</li>
+                    <li><strong>Placement Assistance</strong> - Support in connecting qualified students with employment opportunities in the fire safety sector.</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h3><i class="fas fa-quote-left"></i> Our Training Philosophy</h3>
+                    <p>"At Mahatma Gandhi Fire And Safety Institute, we believe that effective fire safety training goes beyond theoretical knowledge. It requires hands-on experience, quick decision-making abilities, and the courage to act under pressure. We train not just firefighters, but fire safety leaders who can protect lives and property with confidence and competence."</p>
+                </div>
+            </div>
+
+            <!-- Legacy Section -->
+            <div class="content-section">
+                <h2><i class="fas fa-history"></i> Our Legacy & Impact</h2>
+                <p>Since our establishment, Mahatma Gandhi Fire And Safety Institute has made significant contributions to fire safety education in Bihar:</p>
+                
+                <ul>
+                    <li><strong>Thousands of Trained Professionals</strong> - Graduates working across industries, government departments, and private organizations.</li>
+                    <li><strong>Community Outreach Programs</strong> - Regular fire safety awareness campaigns in schools, colleges, and residential areas.</li>
+                    <li><strong>Industry Partnerships</strong> - Collaborations with industrial units for specialized training and safety audits.</li>
+                    <li><strong>Research & Development</strong> - Continuous improvement of training methodologies based on emerging fire safety trends.</li>
+                </ul>
+                
+                <p>Our alumni network spans across Bihar and neighboring states, with graduates holding key positions in fire departments, industrial safety teams, and emergency response units. The trust placed in our institution by students and employers alike is a testament to our commitment to quality fire safety education.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="About.html" class="active">About Us</a>
+                <a href="photo_gallary.html">Gallery</a>
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+            
+            <div class="copyright">
+                © Copyright Mahatma Gandhi Fire And Safety Institute, Gopalganj. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMobile = document.getElementById('navMobile');
+            
+            mobileMenuToggle.addEventListener('click', function() {
+                navMobile.classList.toggle('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (navMobile.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Student portal button click
+            const studentPortalBtn = document.getElementById('studentPortalBtn');
+            studentPortalBtn.addEventListener('click', function() {
+                // Redirect to home page for verification
+                window.location.href = 'index.html#verification';
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (navMobile.classList.contains('active') && 
+                    !navMobile.contains(e.target) && 
+                    !mobileMenuToggle.contains(e.target)) {
+                    navMobile.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Highlight current page in footer navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const footerLinks = document.querySelectorAll('.footer-nav a');
+            
+            footerLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Add animation to elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Animate value boxes
+            document.querySelectorAll('.value-box').forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(20px)';
+                box.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(box);
+            });
+            
+            // Animate mission/vision boxes
+            document.querySelectorAll('.mission-box, .vision-box').forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(20px)';
+                box.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(box);
+            });
+            
+            // Animate program boxes
+            document.querySelectorAll('.program-box').forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateY(20px)';
+                box.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(box);
+            });
+            
+            // Animate highlight boxes
+            document.querySelectorAll('.highlight-box').forEach(box => {
+                box.style.opacity = '0';
+                box.style.transform = 'translateX(-20px)';
+                box.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(box);
+            });
+            
+            // Initialize all animated elements with initial state
+            document.querySelectorAll('.value-box, .mission-box, .vision-box, .program-box, .highlight-box').forEach(el => {
+                if(!el.style.opacity) {
+                    el.style.opacity = '0';
+                }
+            });
+            
+            // Add current year to copyright
+            const copyrightElement = document.querySelector('.copyright');
+            if(copyrightElement) {
+                const currentYear = new Date().getFullYear();
+                copyrightElement.innerHTML = copyrightElement.innerHTML.replace('©', `© ${currentYear}`);
+            }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                // Auto-hide mobile menu on resize
+                if (window.innerWidth > 768 && navMobile.classList.contains('active')) {
+                    navMobile.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

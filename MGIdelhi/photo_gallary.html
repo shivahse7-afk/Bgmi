@@ -18,6 +18,7 @@
             background-color: #f5f5f5;
             color: #333;
             line-height: 1.6;
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
@@ -30,15 +31,189 @@
             padding: 0 15px;
         }
         
-        /* Photo Banner Header */
+        /* ===== UPDATED HEADER WITH NAVIGATION ===== */
+        .main-header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #FFD700;
+            overflow: hidden;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .logo-img img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+        
+        .logo-text {
+            flex: 1;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+            color: #8B0000;
+            line-height: 1.3;
+        }
+        
+        .logo-text h2 {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: #666;
+        }
+        
+        .mobile-logo {
+            display: none;
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .mobile-logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .mobile-logo h1 {
+            font-size: 1.2rem;
+            color: #8B0000;
+            margin-top: 5px;
+        }
+        
+        /* Navigation */
+        .nav-desktop {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-desktop a {
+            color: #8B0000;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .nav-desktop a:hover {
+            background-color: #8B0000;
+            color: white;
+        }
+        
+        .nav-desktop a.active {
+            background-color: #8B0000;
+            color: white;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #8B0000;
+            cursor: pointer;
+        }
+        
+        .nav-mobile {
+            display: none;
+            background-color: white;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-mobile.active {
+            display: block;
+        }
+        
+        .nav-mobile a {
+            display: block;
+            color: #8B0000;
+            text-decoration: none;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+        }
+        
+        .nav-mobile a.active {
+            color: #8B0000;
+            font-weight: bold;
+            background-color: rgba(139, 0, 0, 0.1);
+        }
+        
+        .nav-mobile a:last-child {
+            border-bottom: none;
+        }
+        
+        /* Student Portal */
+        .student-portal {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 14px 25px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #FFD700;
+            margin-top: 10px;
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .student-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(139, 0, 0, 0.3);
+        }
+        
+        .student-portal h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+        
+        .student-portal p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* ===== PHOTO BANNER HEADER ===== */
         .photo-banner-header {
             position: relative;
             width: 100%;
-            height: 300px;
+            height: 320px;
             overflow: hidden;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             margin-bottom: 30px;
+            border-radius: 0 0 15px 15px;
         }
         
         .banner-image {
@@ -53,17 +228,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(139, 0, 0, 0.85), rgba(220, 20, 60, 0.75));
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.85), rgba(178, 34, 34, 0.75));
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         
         .banner-content {
             text-align: center;
             color: white;
-            padding: 20px;
-            max-width: 800px;
+            max-width: 900px;
+            width: 100%;
         }
         
         .banner-logo {
@@ -71,61 +247,71 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
         .banner-logo-image {
-            width: 290px;
-            height: 185px;
+            width: 130px;
+            height: 130px;
             background-color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid #FFD700;
+            border: 4px solid #FFD700;
             overflow: hidden;
-            margin-right: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-right: 25px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            flex-shrink: 0;
         }
         
         .banner-logo-image img {
             width: 100%;
             height: 100%;
             object-fit: contain;
+            padding: 12px;
+        }
+        
+        .banner-text {
+            text-align: left;
+            flex: 1;
+            min-width: 300px;
         }
         
         .banner-text h1 {
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 2.2rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
             color: #fff;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            line-height: 1.3;
         }
         
         .banner-text h2 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: normal;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
             color: #FFD700;
         }
         
         .banner-tagline {
-            background-color: rgba(139, 0, 0, 0.9);
+            background-color: rgba(220, 20, 60, 0.9);
             color: #fff;
-            padding: 12px 30px;
+            padding: 14px 30px;
             border-radius: 30px;
             font-weight: bold;
             margin-top: 20px;
             display: inline-block;
             font-size: 1.1rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             border: 2px solid #FFD700;
         }
-        
+
         /* Breadcrumb Navigation */
         .breadcrumb {
             background-color: white;
             padding: 15px 20px;
-            border-radius: 5px;
+            border-radius: 8px;
             margin-bottom: 30px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
@@ -134,6 +320,7 @@
             list-style: none;
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .breadcrumb li {
@@ -159,7 +346,7 @@
         }
         
         .breadcrumb .current {
-            color: #FFD700;
+            color: #8B0000;
             font-weight: bold;
         }
         
@@ -452,58 +639,42 @@
             position: relative;
         }
         
-        .footer-logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .footer-logo-img {
-            width: 60px;
-            height: 60px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #FFD700;
-            overflow: hidden;
-        }
-        
-        .footer-logo-img img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-        }
-        
         .footer-nav {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 25px;
+            gap: 20px;
         }
         
         .footer-nav a {
             color: #FFD700;
             text-decoration: none;
-            margin: 0 15px;
             font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
         }
         
         .footer-nav a:hover {
+            background-color: rgba(255, 215, 0, 0.1);
             text-decoration: underline;
+        }
+        
+        .footer-nav a.active {
             color: #fff;
+            background-color: rgba(255, 215, 0, 0.2);
         }
         
         .copyright {
             text-align: center;
             padding-top: 20px;
-            border-top: 1px solid #444;
-            color: #aaa;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
         
-        /* Responsive Design */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1200px) {
             .gallery-grid {
                 gap: 20px;
@@ -525,25 +696,80 @@
         }
         
         @media (max-width: 768px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .logo-section {
+                order: 1;
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .logo-container {
+                margin-right: 15px;
+            }
+            
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text h2 {
+                font-size: 0.8rem;
+            }
+            
+            .nav-desktop {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                order: 2;
+            }
+            
+            .student-portal {
+                order: 3;
+                flex-basis: 100%;
+                margin-top: 10px;
+            }
+            
             .photo-banner-header {
-                height: 250px;
-            }
-            
-            .banner-text h1 {
-                font-size: 2.2rem;
-            }
-            
-            .banner-text h2 {
-                font-size: 1.2rem;
+                height: 280px;
+                margin-top: 10px;
             }
             
             .banner-logo {
                 flex-direction: column;
+                text-align: center;
             }
             
             .banner-logo-image {
                 margin-right: 0;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
+                width: 110px;
+                height: 110px;
+            }
+            
+            .banner-text {
+                text-align: center;
+            }
+            
+            .banner-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner-text h2 {
+                font-size: 1.1rem;
+            }
+            
+            .banner-tagline {
+                font-size: 1rem;
+                padding: 12px 25px;
             }
             
             .gallery-grid {
@@ -567,24 +793,26 @@
             .footer-nav {
                 flex-direction: column;
                 align-items: center;
-            }
-            
-            .footer-nav a {
-                margin: 5px 0;
+                gap: 10px;
             }
         }
         
         @media (max-width: 480px) {
             .photo-banner-header {
-                height: 200px;
+                height: 240px;
             }
             
             .banner-text h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .banner-text h2 {
                 font-size: 1rem;
+            }
+            
+            .banner-logo-image {
+                width: 90px;
+                height: 90px;
             }
             
             .banner-tagline {
@@ -613,25 +841,50 @@
     </style>
 </head>
 <body>
-    <!-- Photo Banner Header -->
-    <div class="photo-banner-header">
-        <img src="https://i.ibb.co/0RrR9Rk1/fire-img-1.jpg" 
-             alt="MG Fire and Safety Institute Banner" class="banner-image">
-        <div class="banner-overlay">
-            <div class="banner-content">
-                <div class="banner-logo">
-                    <div class="banner-logo-image">
-                        <img src="https://i.ibb.co/mVB4Hyc4/IMG-20251210-161115.png" alt="MG Fire and Safety Institute Logo">
-                    </div>
-                    <div class="banner-text">
-                        <h1>Mahatma Gandhi Fire And Safety Institute</h1>
-                        <h2>Gopalganj - Bihar</h2>
+    <!-- Header with Navigation (Updated to match other pages) -->
+    <header class="main-header">
+        <div class="container">
+            <div class="mobile-logo">
+                <img src="https://i.ibb.co/mVB4Hyc4/IMG-20251210-161115.png" alt="MG Fire and Safety Institute Logo">
+                <h1>Mahatma Gandhi Fire And Safety Institute</h1>
+            </div>
+            
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-container">
+                        <div class="logo-img">
+                            <img src="https://i.ibb.co/mVB4Hyc4/IMG-20251210-161115.png" alt="MG Fire and Safety Institute Logo">
+                        </div>
+                        <div class="logo-text">
+                            <h1>Mahatma Gandhi Fire And Safety Institute</h1>
+                            <h2>Gopalganj - Bihar</h2>
+                        </div>
                     </div>
                 </div>
-                <div class="banner-tagline">Excellence in Fire Safety Training & Education</div>
+                
+                <nav class="nav-desktop">
+                    <a href="index.html">Home</a>
+                    <a href="About.html">About Us</a>
+                    <a href="photo_gallary.html" class="active">Gallery</a>
+                    <a href="contact_us.html">Contact Us</a>
+                </nav>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                
             </div>
+            
+            <nav class="nav-mobile" id="navMobile">
+                <a href="index.html">Home</a>
+                <a href="About.html">About Us</a>
+                <a href="photo_gallary.html" class="active">Gallery</a>
+                <a href="contact_us.html">Contact Us</a>
+            </nav>
         </div>
-    </div>
+    </header>
+
 
     <div class="container">
         <!-- Breadcrumb Navigation -->
@@ -742,8 +995,6 @@
                         <div class="gallery-description">Proper use and safety procedures for fire service ladders</div>
                     </div>
                 </div>
-                
-               
             </div>
         </div>
 
@@ -808,8 +1059,7 @@
             <div class="footer-nav">
                 <a href="index.html">Home</a>
                 <a href="About.html">About Us</a>
-                <a href="photo_gallary.html">Gallery</a>
-                
+                <a href="photo_gallary.html" class="active">Gallery</a>
                 <a href="contact_us.html">Contact Us</a>
             </div>
             
@@ -832,6 +1082,41 @@
             const lightboxPrev = document.getElementById('lightboxPrev');
             const lightboxNext = document.getElementById('lightboxNext');
             
+            // Mobile menu toggle functionality
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMobile = document.getElementById('navMobile');
+            const studentPortalBtn = document.getElementById('studentPortalBtn');
+            
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', function() {
+                navMobile.classList.toggle('active');
+                const icon = mobileMenuToggle.querySelector('i');
+                if (navMobile.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Student portal button click
+            studentPortalBtn.addEventListener('click', function() {
+                window.location.href = 'index.html#verification';
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (navMobile.classList.contains('active') && 
+                    !navMobile.contains(e.target) && 
+                    !mobileMenuToggle.contains(e.target)) {
+                    navMobile.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
             // Current image index for lightbox navigation
             let currentImageIndex = 0;
             const totalImages = galleryItems.length;
@@ -842,8 +1127,7 @@
             
             footerLinks.forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
-                    link.style.color = '#fff';
-                    link.style.textDecoration = 'underline';
+                    link.classList.add('active');
                 }
             });
             
@@ -1037,6 +1321,17 @@
                 const currentYear = new Date().getFullYear();
                 copyrightElement.innerHTML = `© Copyright ${currentYear} Mahatma Gandhi Fire And Safety Institute, Gopalganj. All Rights Reserved.`;
             }
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                // Auto-hide mobile menu on resize
+                if (window.innerWidth > 768 && navMobile.classList.contains('active')) {
+                    navMobile.classList.remove('active');
+                    const icon = mobileMenuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
         });
     </script>
 </body>
